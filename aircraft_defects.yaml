@@ -1,0 +1,19 @@
+# Aircraft Defect Detection Dataset Configuration
+# Place this file in your project root before training.
+
+# Update these paths to match your dataset location
+path: C:/Users/shrab/datasets/aircraft_defects
+train: images/train
+val: images/val
+
+# Classes (must match your labeling order)
+names:
+  0: Crack
+  1: Corrosion
+  2: Dent
+  3: Scratch
+  4: Rivet_Defect
+  5: Surface_Discoloration
+  6: Delamination
+
+nc: 7

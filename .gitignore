@@ -1,0 +1,24 @@
+# Build output
+.next/
+
+# Dependencies
+node_modules/
+
+# Local runtime artifacts
+runs/
+public/uploads/
+
+# Env / secrets
+.env
+.env.local
+.env.*
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Model binaries / large artifacts
+# Keep model assets available for local inference and demos.
+

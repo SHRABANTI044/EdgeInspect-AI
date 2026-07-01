@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base: #07111f;
+  --color-base-2: #0a1828;
+  --color-panel: #0d1f33;
+  --color-primary: #00aeef;
+  --color-cyan: #00e5ff;
+  --color-success: #22e58a;
+  --color-warning: #ff8a3d;
+  --color-critical: #ff3b5c;
+  --color-hudtext: #c9d8e8;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+}
+
+:root {
+  --bg: #07111f;
+  --primary: #00aeef;
+  --cyan: #00e5ff;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  background: #07111f;
+  color: #e7f0fb;
+  font-family: var(--font-sans);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1828;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0d3a52, #00aeef44);
+  border-radius: 8px;
+  border: 2px solid #0a1828;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00aeef88, #00e5ff66);
+}
+
+::selection {
+  background: #00aeef44;
+  color: #fff;
+}
+
+/* ===== Glass ===== */
+.glass {
+  background: linear-gradient(
+    160deg,
+    rgba(20, 40, 64, 0.72),
+    rgba(10, 24, 40, 0.55)
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(0, 174, 239, 0.16);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+.glass-hover {
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.glass-hover:hover {
+  border-color: rgba(0, 229, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.25),
+    0 18px 50px -16px rgba(0, 174, 239, 0.35),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+}
+
+.glow-text {
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.55);
+}
+.glow-primary {
+  box-shadow: 0 0 24px -2px rgba(0, 174, 239, 0.55);
+}
+.glow-cyan {
+  box-shadow: 0 0 30px -4px rgba(0, 229, 255, 0.6);
+}
+
+/* ===== Animated digital grid ===== */
+.grid-bg {
+  background-image: linear-gradient(rgba(0, 174, 239, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 174, 239, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%);
+  animation: grid-pan 24s linear infinite;
+}
+@keyframes grid-pan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 44px 44px;
+  }
+}
+
+/* ===== Moving gradient light orb ===== */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: orb-float 18s ease-in-out infinite;
+}
+@keyframes orb-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.15);
+  }
+}
+
+/* ===== Scan line ===== */
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 229, 255, 0.9),
+    transparent
+  );
+  box-shadow: 0 0 18px 2px rgba(0, 229, 255, 0.7);
+  animation: scan-move 2.6s ease-in-out infinite;
+}
+@keyframes scan-move {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* ===== Radar ===== */
+.radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 229, 255, 0.25);
+}
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 270deg,
+    rgba(0, 229, 255, 0.05) 320deg,
+    rgba(0, 229, 255, 0.4) 358deg,
+    transparent 360deg
+  );
+  animation: radar-spin 4s linear infinite;
+}
+@keyframes radar-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Pulse dot ===== */
+.pulse-dot {
+  position: relative;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* ===== Floating particle ===== */
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #00e5ff;
+  box-shadow: 0 0 8px 1px rgba(0, 229, 255, 0.8);
+  animation: particle-rise linear infinite;
+}
+@keyframes particle-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* ===== AI processing shimmer ===== */
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    rgba(0, 174, 239, 0.05) 30%,
+    rgba(0, 229, 255, 0.25) 50%,
+    rgba(0, 174, 239, 0.05) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-move 1.4s linear infinite;
+}
+@keyframes shimmer-move {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+  background: linear-gradient(135deg, #00aeef, #0080c2);
+  color: #04111e;
+  font-weight: 600;
+  box-shadow: 0 8px 24px -8px rgba(0, 174, 239, 0.7);
+  transition: all 0.25s ease;
+}
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 10px 32px -6px rgba(0, 229, 255, 0.8);
+  transform: translateY(-2px);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-ghost {
+  border: 1px solid rgba(0, 174, 239, 0.3);
+  background: rgba(0, 174, 239, 0.06);
+  color: #c9d8e8;
+  transition: all 0.25s ease;
+}
+.btn-ghost:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  background: rgba(0, 229, 255, 0.12);
+  color: #fff;
+}
+
+/* ===== Fade/slide in ===== */
+.fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spin-slow {
+  animation: spin 8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+.blink {
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
